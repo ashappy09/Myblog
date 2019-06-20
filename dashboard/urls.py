@@ -16,8 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from newsapp import urls
+from django.conf.urls import url
+from newsapp import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(urls)),
+    url(r'^logout/', views.logout, name='logout'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
+
 ]

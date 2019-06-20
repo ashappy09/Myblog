@@ -37,22 +37,31 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">Django News App</a>
+                <a class="navbar-brand" href="{% url 'home' %}">My Django Blog</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                          <li class="nav-item text-black">
+                            <a class="nav-link text-black font-weight-bold" href="{% url 'index' %}">Home</a>
+                        </li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">About</a>
+                                <a class="nav-link text-black font-weight-bold" href="{% url 'post_new' %}">Post</a>
+                            </li>
+                        <li class="nav-item text-black">
+                            <a class="nav-link text-black font-weight-bold" href="{% url 'index' %}">Hello, {{user.username}}</a>
                         </li>
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Policy</a>
+                            <a class="nav-link text-black font-weight-bold" href="{% url 'logout' %}">logout</a>
                         </li>
+                        {% else %}
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
-                        </li>
+                                <a class="nav-link text-black font-weight-bold" href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import News, userProfile
+from . models import News, Post
 # Register your models here.
 admin.site.register(News)
-admin.site.register(userProfile)
+admin.site.register(Post)
