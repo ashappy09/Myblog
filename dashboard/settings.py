@@ -25,7 +25,7 @@ SECRET_KEY = 'uo6aqedqn0r974cgklvgc07zr_w7$@2$4wf3=rj8w#in62&#5_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ryan7417.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -108,8 +108,6 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
  'social_core.backends.google.GoogleOpenId',  # for Google authentication
  'social_core.backends.google.GoogleOAuth2',  # for Google authentication
- 'social_core.backends.github.GithubOAuth2',  # for Github authentication
- 'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
  
  'django.contrib.auth.backends.ModelBackend',
 )
@@ -140,3 +138,7 @@ LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='91470507564-n59n34br5oncc5r4i3paauv7a40arspe.apps.googleusercontent.com'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='l-qD_Dktv2SmKehTHd9-P-I0'
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
