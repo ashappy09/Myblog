@@ -5,6 +5,9 @@
         font-family: "Roboto", sans-serif;
         font-size: 15px;
         background-color: #fdfdfd;
+        padding: 5px;
+        overflow-x: hidden;
+
     }
     
     .head_text {
@@ -13,37 +16,57 @@
     
     .card {
         box-shadow: 0 16px 48px #E3E7EB;
+        padding: 5px;
+        
     }
-</style>
+    .row{
+        padding: 5px;
+        display:flex;
+	    flex-direction:row;
+	    flex-wrap: nowrap;
+        overflow-x:auto;
+        
+    }
 
-<div class="container">
-    <div class="row">
+.card-text{
+word-wrap: break-word;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.row::-webkit-scrollbar {
+    display: none;
+  }
+
+</style>
+<h4 class=" site-heading mx-4 my-4 mt-3 text-black"> Today's News </h4>
+<div class="row">
         <!-- Blog Entries Column -->
-        <div class="col-md-4 mt-3 left">
-            <h4 class=" site-heading my-4 mt-3 text-black"> Today's News </h4>
-            {% for object in object_list %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ object.headline }}</h2>
-                    <p class="card-text text-muted h6">{{ object.author }} | {{ object.datemonth}} </p>
-                    <p class="card-text">{{object.text }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="col-md-8 mt-3 ">
-                <h4 class=" site-heading my-4 mt-3 text-black">Top Readings</h4>
-                {% for object in post_list %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ object.title }}</h2>
-                        <p class="card-text text-muted h6">{{ object.author }} | {{ object.published_date}} </p>
-                        <p class="card-text">{{object.text|slice:200}} ...</p>
-                        <a href="{% url 'post_detail' pk=object.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                {% for object in object_list %}
+                <div class="col-md-4 mt-1 mb-2">
+                        <div class = "card">
+                        <h2 class="card-title">{{ object.headline }}</h2>
+                        <p class="card-text text-muted h6">{{ object.author }} | {{ object.datemonth}} </p>
+                        <p class="card-text">{{object.text }}</p>
                     </div>
                 </div>
                 {% endfor %}
-            </div>
     </div>
-</div>
+            <div class="container">
+                <div class="col-md-8 mt-3 ">
+                        <h4 class=" site-heading my-4 mt-3 text-black">Latest Readings</h4>
+                        {% for object in post_list %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ object.title }}</h2>
+                                <p class="card-text text-muted h6">{{ object.author }} | {{ object.published_date}} </p>
+                                <p class="card-text">{{object.text|slice:200}} ...</p>
+                                <a href="{% url 'post_detail' pk=object.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
 {%endblock%}

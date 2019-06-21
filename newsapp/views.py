@@ -58,7 +58,7 @@ def index(request):
     post = Post.objects.all().order_by('-published_date')
     context = {
         "object_list":news,
-        "post_list":post
+        "post_list":post,
     }
     return render(request,'index.html',context = context)
 
@@ -66,6 +66,9 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'post_detail.html', {'post': post})
 
+def getmypost(request):
+    post = Post.objects.filter(author = request.user)
+    return render(request,'postlist.html',{'post_list':post})
 
 def logout(request):
     """Logs out user"""
