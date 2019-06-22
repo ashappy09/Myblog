@@ -14,10 +14,10 @@
         color: white;
     }
     
-    .card {
+    .card1 {
         box-shadow: 0 16px 48px #E3E7EB;
-        padding: 5px;
-        
+        padding: 4px;
+        height: 100%;
     }
     .row{
         padding: 5px;
@@ -25,6 +25,9 @@
 	    flex-direction:row;
 	    flex-wrap: nowrap;
         overflow-x:auto;
+        background: #E3E7EB;
+        width:fit-content;
+        height: fit-content;
         
     }
 
@@ -33,7 +36,7 @@ word-wrap: break-word;
 }
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .row::-webkit-scrollbar {
@@ -50,7 +53,7 @@ word-wrap: break-word;
         <!-- Blog Entries Column -->
                 {% for object in object_list %}
                 <div class="col-md-4 mt-1 mb-2">
-                        <div class = "card">
+                        <div class = "card card1">
                         <h3 class="card-title">{{ object.headline }}</h3>
                         <p class="card-text text-muted h6">{{ object.author }} | {{ object.datemonth}} </p>
                         <p class="card-text">{{object.text }}</p>
